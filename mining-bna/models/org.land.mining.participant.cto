@@ -1,0 +1,41 @@
+namespace org.land.mining.participant 
+
+import org.land.mining.Land
+import org.land.mining.Status
+
+participant MinistryOfMining identified by participantKey {
+  o String participantKey
+}
+
+participant MinistryOfLand identified by participantKey {
+  o String participantKey
+}
+
+participant MinistryOfFinance identified by participantKey {
+  o String participantKey
+}
+
+participant MiningCompany identified by participantKey {
+  o String participantKey
+}
+
+transaction InvokeLandCreation {
+  o String  landId
+  o String  coordinates
+  o String  ore
+  o Integer value
+  --> MiningCompany mining_company
+}
+
+transaction ApproveLandTx {
+  --> Land land
+}
+
+transaction TransferLandTx {
+  --> MiningCompany mining_company
+  --> Land land
+}
+
+transaction ApproveTransferTx {
+  --> Land land
+}
